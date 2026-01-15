@@ -5,7 +5,7 @@ services:
     pythonVersion: 3.11
     plan: free
     buildCommand: pip install -r requirements-prod.txt
-    startCommand: DJANGO_SETTINGS_MODULE=gym_management.settings gunicorn --bind=0.0.0.0:$PORT --workers=4 gym_management.wsgi:application
+    startCommand: gunicorn -c gunicorn_config.py gym_management.wsgi
     envVars:
       - key: SECRET_KEY
         generateValue: true
