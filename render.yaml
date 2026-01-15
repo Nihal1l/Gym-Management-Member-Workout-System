@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: gym-api
+    runtime: python310
+    plan: free
+    buildCommand: "pip install -r requirements-prod.txt"
+    startCommand: "gunicorn gym_management.wsgi:application --bind 0.0.0.0:$PORT --workers 4"
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: "gym-management-member-workout-system-8e9d.onrender.com,localhost"
+      - key: PYTHON_VERSION
+        value: "3.10.10"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: gym-database
+          property: connectionString
+
+  - type: pserv
+    name: gym-database
+    ipAllowList: []
+    plan: free
+    postgresVersion: 15

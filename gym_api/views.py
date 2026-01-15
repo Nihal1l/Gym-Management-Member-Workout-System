@@ -427,3 +427,50 @@ class ActivityLogViewSet(viewsets.ReadOnlyModelViewSet):
     filterset_fields = ['user', 'action', 'model_name']
     ordering_fields = ['created_at']
     ordering = ['-created_at']
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def welcome_view(request):
+    """Welcome endpoint for API root"""
+    return Response({
+        'message': 'Welcome to Gym Management API',
+        'description': 'For ongoing use, you have to log in first',
+        'endpoints': {
+            'login': '/api/v1/auth/login/',
+            'refresh_token': '/api/v1/auth/refresh/',
+            'profile': '/api/v1/auth/profile/',
+            'gym_branches': '/api/v1/gym-branches/',
+            'users': '/api/v1/users/',
+            'workout_plans': '/api/v1/workout-plans/',
+            'workout_tasks': '/api/v1/workout-tasks/',
+            'activity_logs': '/api/v1/activity-logs/'
+        },
+        'test_credentials': {
+            'super_admin': {
+                'email': 'superadmin@gym.com',
+                'password': 'SuperAdmin@123',
+                'role': 'super_admin'
+            },
+            'gym_manager': {
+                'email': 'manager1@gym.com',
+                'password': 'Manager@123',
+                'role': 'gym_manager'
+            },
+            'trainer': {
+                'email': 'trainer1@gym.com',
+                'password': 'Trainer@123',
+                'role': 'trainer'
+            },
+            'member': {
+                'email': 'member1@gym.com',
+                'password': 'Member@123',
+                'role': 'member'
+            }
+        },
+        'documentation': {
+            'readme': 'https://github.com/yourusername/gym-management-api/blob/main/README.md',
+            'api_specification': 'https://github.com/yourusername/gym-management-api/blob/main/API_SPECIFICATION.md',
+            'database_schema': 'https://github.com/yourusername/gym-management-api/blob/main/DATABASE_SCHEMA.md'
+        }
+    })
