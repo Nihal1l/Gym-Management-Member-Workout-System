@@ -1,4 +1,7 @@
 # Production dependencies
+setuptools>=70.0.0
+wheel>=0.42.0
+pip>=24.0
 Django==4.2.8
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.3.1
