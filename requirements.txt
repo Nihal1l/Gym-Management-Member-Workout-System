@@ -6,13 +6,9 @@ django-cors-headers==4.3.1
 
 # Configuration
 python-decouple==3.8
-dj-database-url==2.1.0
 
 # Database
 psycopg2-binary==2.9.9
-
-# API Documentation
-drf-yasg==1.21.7
 
 # Filtering
 django-filter==23.5
